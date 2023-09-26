@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+<!-- Hotjar Tracking Code for staging -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3587741,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- End Hotjar Tracking code -->
+    <title>Untitled - Neo4J Graph Examples - Movies</title>
+    <link rel="canonical" href="https://neo4j.com/neo4j-graph-examples-movie/1/movies/">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+    <link rel="preload" href="../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../assets/css/site.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+
+    <meta property="neo:type" content="Developer Guide">
+    <meta property="neo:site" content="Developer Site">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content=" - Neo4J Graph Examples - Movies" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20210423062553/neo4j-social-share-21.png" />
+    <meta property="og:description" content=" - Neo4J Graph Examples - Movies" />
+    <meta property="og:url" content="https://neo4j.com/neo4j-graph-examples-movie/1/movies/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article developer">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20210422201812/neo4j-logo-2020-white.svg" alt="" />
+      <a href="/developer/" class="navbar-item no-left-padding page-name-white" aria-label="Developer Guides">
+        Developer
+      </a>
+      
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/drivers-apis">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/spark/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/arrows/">arrows.app</a>
+              <ul class="project-links">
+                <li><a href="/labs/arrows/" class="project-link">Details</a></li>
+                <li><a href="https://arrows.app" class="project-link">arrows.app</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/apoc/">APOC Extended</a>
+
+              <ul class="project-links">
+                <li><a href="/labs/apoc/5/" class="project-link">Documentation</a></li>
+                <li><a href="/developer/neo4j-apoc/" class="project-link">Developer Guide</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/halin/">Halin</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/etl-tool/">ETL Tool</a>
+              <ul class="project-links">
+                <li><a href="/labs/etl-tool/" class="project-link">Details</a></li>
+                <li><a href="/labs/etl-tool/1.5.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-migrations/">Neo4j Migrations</a>
+              <ul class="project-links">
+                <li><a href="/labs/neo4j-migrations/" class="project-link">Details</a></li>
+                <li><a href="/labs/neo4j-migrations/2.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/liquibase/">Neo4j Plugin For Liquibase</a>
+              <ul class="project-links">
+                <li><a href="/labs/liquibase/" class="project-link">Details</a></li>
+                <li><a href="https://github.com/liquibase/liquibase-neo4j" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">Neosemantics</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/tutorial/" class="project-link">Getting Started</a></li>
+                <li><a href="/labs/neosemantics/4.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-helm/">Neo4j Helm</a>
+              <ul class="project-links">
+                <li><a href="/labs/neo4j-helm/" class="project-link">Details</a></li>
+                <li><a href="/labs/neo4j-helm/1.0.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neodash/">NeoDash</a>
+              <ul class="project-links">
+                <li><a href="/labs/neodash/" class="project-link">Details</a></li>
+                <li><a href="/labs/neodash/2.1/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neomodel/">neomodel</a>
+              <ul class="project-links">
+                <li><a href="/labs/neomodel/" class="project-link">Details</a></li>
+                <li><a href="https://neomodel.readthedocs.io/en/latest/" target="_blank" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/?ref=docs" target="_blank">GraphAcademy</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/?ref=docs">Free, Self Paced Training</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certification/?ref=docs" target="_blank">Certification</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/developer/kb" target="_blank">Knowledge Base</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="neo4j-graph-examples-movie" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+      <div class="selectors">
+        
+      </div>
+          </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    <nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+        <div class="edit-this-page"><a href="https://github.com/QubitPi/neo4j-graph-examples-movies/tree/HEAD/modules/ROOT/pages/movies.adoc">Edit this Page</a></div>
+    </div>
+</div>
+
+  <div class="content">
+<article class="doc">
+<div class="sect-header">
+</div>
+
+
+
+
+
+<style type="text/css">
+.smallest {
+   font-size:0.6em;
+}
+</style>
+<div class="sect1">
+<h2 id="_what_is_cypher"><a class="anchor" href="#_what_is_cypher"></a>What is Cypher?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cypher is a graph query language that is used to query the Neo4j Database. Just like you use SQL to query a MySQL database,
+you would use Cypher to query the Neo4j Database.</p>
+</div>
+<div class="paragraph">
+<p>A simple Cypher query can look something like this</p>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="paragraph">
+<p>This content is only revealed when the user clicks the block title.</p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie)
+WHERE m.released &gt; 2000
+RETURN m LIMIT 5</code></pre>
+</div>
+</div>
+<div style="background: #5CA6D9EE; padding: 12px; color: white; border-radius: 2px">
+Hint: You can click on the query above to populate it in the editor.
+</div>
+<div class="paragraph">
+<p><strong>Expected Result</strong>: The above query will return all the movies that were released after the year 2000 limiting the result to 5 items.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/5-movies.svg" alt="5 movies" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Write a query to retrieve all the movies released after the year 2005.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie)
+WHERE m.released &gt; 2005
+RETURN m</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>Write a query to return the count of movies released after the year 2005. (Hint: you can use the <code>COUNT(m)</code> function to return the count)</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie)
+WHERE m.released &gt; 2005
+RETURN count(m)</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nodes_and_relationships"><a class="anchor" href="#_nodes_and_relationships"></a>Nodes and Relationships</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nodes and Relationships are the basic building blocks of a graph database.</p>
+</div>
+<div class="paragraph">
+<p><strong>Nodes</strong></p>
+</div>
+<div class="paragraph">
+<p>Nodes represent entities. A node in graph database is similar to a row in a relational database.
+In the picture below we can see 2 kinds of nodes - <code>Person</code> and <code>Movie</code>. In writing a Cypher query, a node is enclosed between a</p>
+</div>
+<div class="paragraph">
+<p>parenthesis — like <code>(p:Person)</code> where <code>p</code> is a variable and <code>Person</code> is the type of node it is referring to.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/schema.svg" alt="schema" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Relationship</strong></p>
+</div>
+<div class="paragraph">
+<p>Two nodes can be connected with a relationship. In the above image <code>ACTED_IN</code>, <code>REVIEWED</code>, <code>PRODUCED</code>, <code>WROTE</code> and <code>DIRECTED</code> are all
+relationships connecting the corresponding types of nodes.</p>
+</div>
+<div class="paragraph">
+<p>In writing a cypher query, relationships are enclosed in square brackets - like <code>[w:WORKS_FOR]</code> where <code>w</code> is a variable and <code>WORKS_FOR</code> is
+the type of relationship it is referring to.</p>
+</div>
+<div class="paragraph">
+<p>Two nodes can be connected with more than one relationships.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[d:DIRECTED]-(m:Movie)
+WHERE m.released &gt; 2010
+RETURN p,d,m</code></pre>
+</div>
+</div>
+<div style="background: #5CA6D9EE; padding: 12px; color: white; border-radius: 2px">
+Hint: You can click on the query above to populate it in the editor.
+</div>
+<div class="paragraph">
+<p><strong>Expected Result</strong>: The above query will return all Person nodes who directed a movie that was released after 2010.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/movies-after-2010.svg" alt="movies after 2010" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query to get all the people who acted in a movie that was released after 2010.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[r:ACTED_IN]-(m:Movie)
+WHERE m.released &gt; 2010
+RETURN p,r,m</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_labels"><a class="anchor" href="#_labels"></a>Labels</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Labels is a name or identifier of a Node or a Relationship. In the image below <code>Movie</code> and <code>Person</code> are Node labels and <code>ACTED_IN</code>, <code>REVIEWED</code>, etc are Relationship types.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/schema.svg" alt="schema" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>In writing a Cypher query, Labels are prefixed with a colon - like <code>:Person</code> or <code>:ACTED_IN</code>. You can assign the node label to a variable by prefixing the syntax with the variable name. Like <code>(p:Person)</code> means <code>p</code> variable denoted <code>Person</code> labeled nodes.</p>
+</div>
+<div class="paragraph">
+<p>Labels are used when you want to perform operations only on a specific types of Nodes. Like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)
+RETURN p
+LIMIT 20</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will return only <code>Person</code> Nodes (limiting to 20 items) while</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (n)
+RETURN n
+LIMIT 20</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will return all kinds of nodes (limiting to 20 items).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Properties are name-value pairs that are used to add attributes to nodes and relationships.</p>
+</div>
+<div class="paragraph">
+<p>To return specific properties of a node you can write</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie)
+RETURN m.title, m.released</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/movies-properties.jpg" alt="movies properties" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Expected Result</strong> - This will return Movie nodes but with only the <code>title</code> and <code>released</code> properties.</p>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Write a query to get <code>name</code> and <code>born</code> properties of the Person node.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)
+RETURN p.name, p.born</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_node"><a class="anchor" href="#_create_a_node"></a>Create a Node</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>CREATE</code> clause can be used to create a new node or a relationship.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (p:Person {name: 'John Doe'})
+RETURN p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above statement will create a new <code>Person</code> node with property <code>name</code> having value <code>John Doe</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new <code>Person</code> node with a property <code>name</code> having the value of your name.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (p:Person {name: '&lt;Your Name&gt;'})
+RETURN p</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_finding_nodes_with_match_and_where_clause"><a class="anchor" href="#_finding_nodes_with_match_and_where_clause"></a>Finding Nodes with <strong>Match</strong> and <strong>Where</strong> Clause</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Match</code> clause is used to find nodes that match a particular pattern. This is the primary way of getting data from a Neo4j database.</p>
+</div>
+<div class="paragraph">
+<p>In most cases, a <code>Match</code> is used along with certain conditions to narrow down the result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person {name: 'Tom Hanks'})
+RETURN p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is one way of doing it. Although you can only do basic string match based filtering this way (without using <code>WHERE</code> clause).</p>
+</div>
+<div class="paragraph">
+<p>Another way would be to use a <code>WHERE</code> clause which allows for more complex filtering including <code>&gt;</code>, <code>&lt;</code>, <code>STARTS WITH</code>, <code>ENDS WITH</code>, etc</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)
+WHERE p.name = "Tom Hanks"
+RETURN p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both of the above queries will return the same results.</p>
+</div>
+<div class="paragraph">
+<p>You can read more about Where clause and list of all filters here - <a href="https://neo4j.com/docs/cypher-manual/current/clauses/where/" class="bare">https://neo4j.com/docs/cypher-manual/current/clauses/where/</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find the movie with title "Cloud Atlas"</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie {title: "Cloud Atlas"})
+RETURN m</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>Get all the movies that were released between 2010 and 2015.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie)
+WHERE m.released &gt; 2010 AND m.released &lt; 2015
+RETURN m</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_merge_clause"><a class="anchor" href="#_merge_clause"></a>Merge Clause</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>MERGE</code> clause is used to either</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>match the existing nodes and bind them or</p>
+</li>
+<li>
+<p>create new node(s) and bind them</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It is a combination of <code>MATCH</code> and <code>CREATE</code> and additionally allows to specify additional actions if the data was matched or created.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (p:Person {name: 'John Doe'})
+ON CREATE SET p.createdAt = timestamp()
+ON MATCH SET p.lastLoggedInAt = timestamp()
+RETURN p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above statement will create the Person node if it does not exist. If the node already exists, then it will set the property <code>lastLoggedInAt</code> to the current timestamp. If the node did not exist and was newly created instead, then it will set the <code>createdAt</code> property to the current timestamp.</p>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Write a query using Merge to create a movie node with title "Greyhound". If the node does not exist then set its <code>released</code> property to 2020 and <code>lastUpdatedAt</code> property to the current time stamp. If the node already exists, then only set <code>lastUpdatedAt</code> to the current time stamp. Return the movie node.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (m:Movie {title: 'Greyhound'})
+ON CREATE SET m.released = "2020", m.lastUpdatedAt = timestamp()
+ON MATCH SET m.lastUpdatedAt = timestamp()
+RETURN m</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_relationship"><a class="anchor" href="#_create_a_relationship"></a>Create a Relationship</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A Relationship connects 2 nodes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person), (m:Movie)
+WHERE p.name = "Tom Hanks" AND m.title = "Cloud Atlas"
+
+CREATE (p)-[w:WATCHED]-&gt;(m)
+RETURN type(w)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above statement will create a relationship <code>:WATCHED</code> between the existing <code>Person</code> and <code>Movie</code> nodes and return the type of relationship (i.e <code>WATCHED</code>).</p>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a relationship <code>:WATCHED</code> between the node you created for yourself previously in step 6 and the movie <strong>Cloud Atlas</strong> and then return the type of created relationship</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person), (m:Movie)
+WHERE p.name = "&lt;Your Name&gt;" AND m.title = "Cloud Atlas"
+
+CREATE (p)-[w:WATCHED]-&gt;(m)
+RETURN type(w)</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_relationship_types"><a class="anchor" href="#_relationship_types"></a>Relationship Types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Neo4j, there can be 2 kinds of relationships - <strong>incoming</strong> and <strong>outgoing</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/relationship-types.svg" alt="relationship types" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>In the above picture, the Tom Hanks node is said to have an outgoing relationship while the Cloud Atlas node is said to have an incoming relationship.</p>
+</div>
+<div class="paragraph">
+<p>Relationships always have a direction. However, you only have to pay attention to the direction where it is useful.</p>
+</div>
+<div class="paragraph">
+<p>To denote an outgoing or an incoming relationship in cypher, we use <code>&#8594;</code> or <code>&#8592;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Example -</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[r:ACTED_IN]-&gt;(m:Movie)
+RETURN p,r,m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above query, Person has an outgoing relationship and movie has an incoming relationship.</p>
+</div>
+<div class="paragraph">
+<p>Although, in the case of the movies dataset, the direction of the relationship is not that important and
+even without denoting the direction in the query, it will return the same result. So the query</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[r:ACTED_IN]-(m:Movie)
+RETURN p,r,m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will return the same reuslt as the above one.</p>
+</div>
+<div class="paragraph">
+<p><strong>Try</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Write a query to find the nodes <code>Person</code> and <code>Movie</code> which are connected by <code>REVIEWED</code> relationship and is outgoing from the <code>Person</code> node and incoming to the <code>Movie</code> node.</p>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[r:REVIEWED]-(m:Movie)
+RETURN p,r,m</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_cypher_queries"><a class="anchor" href="#_advanced_cypher_queries"></a>Advanced Cypher queries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s look at some questions that you can answer with Cypher queries.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Finding who directed Cloud Atlas movie</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie {title: 'Cloud Atlas'})&lt;-[d:DIRECTED]-(p:Person)
+RETURN p.name</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Finding all people who have co-acted with Tom Hanks in any movie</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (tom:Person {name: "Tom Hanks"})-[:ACTED_IN]-&gt;(:Movie)&lt;-[:ACTED_IN]-(p:Person)
+RETURN p.name</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Finding all people related to the movie Cloud Atlas in any way</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[relatedTo]-(m:Movie {title: "Cloud Atlas"})
+RETURN p.name, type(relatedTo)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above query, we only used the variable <code>relatedTo</code> which will try to find all the relationships between any <code>Person</code> node and the movie node "Cloud Atlas"</p>
+</div>
+</li>
+<li>
+<p>Finding Movies and Actors that are 3 hops away from Kevin Bacon.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person {name: 'Kevin Bacon'})-[*1..3]-(hollywood)
+RETURN DISTINCT p, hollywood</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note: in the above query, <code>hollywood</code> refers to any node in the database (in this case <code>Person</code> and <code>Movie</code> nodes)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_great_job"><a class="anchor" href="#_great_job"></a>Great Job!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now you know the basics of writing Cypher queries. You are on your way to becoming a graphista! Congratulations.</p>
+</div>
+<div class="paragraph">
+<p>Feel free to play around with the data by writing more Cypher queries. If you want to learn more about Cypher,</p>
+</div>
+<div class="paragraph">
+<p>you can use one of the below resources</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://neo4j.com/docs/cypher-manual/">Cypher Manual</a> - detailed manual on Cypher syntax</p>
+</li>
+<li>
+<p><a href="https://graphacademy.neo4j.com/">Online Training - Introduction to Neo4j</a> - If you are new to Neo4j and like to learn through an online class, this is the best place to get started.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+    <div class="feedback">
+    <div class="header question">
+        <p><strong>Was this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div></article>
+<aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+  <div class="column">
+    <div class="logo-footer"></div>
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  <div class="column">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <p>US: 1-855-636-4532<br>
+      Sweden +46 171 480 113<br>
+      UK: +44 20 3868 3223<br>
+      France: +33 (0) 1 88 46 13 20<br>
+      <!--Germany: +49 (0)89 26204 6300</p>-->
+    </p>
+  </div>
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+</div>
+</footer>
+
+  <script src="../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../assets/js/site.js"></script>
+  <script async src="../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../assets/js/vendor/image-zoom.js"></script>
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>  </body>
+</html>
