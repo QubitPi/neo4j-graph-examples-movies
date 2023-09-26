@@ -1,0 +1,6 @@
+name: neo4j-graph-examples-movie
+title: Neo4J Graph Examples - Movies
+version: '1'
+asciidoc:
+  attributes:
+    img: ''

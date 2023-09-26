@@ -13,10 +13,10 @@
 
 ==  What is Cypher?
 
-Cypher is a graph query language that is used to query the Neo4j Database. Just like you use SQL to query a MySQL database, 
+Cypher is a graph query language that is used to query the Neo4j Database. Just like you use SQL to query a MySQL database,
 you would use Cypher to query the Neo4j Database.
 
-A simple Cypher query can look something like this 
+A simple Cypher query can look something like this
 
 
 [%collapsible]
@@ -26,8 +26,8 @@ This content is only revealed when the user clicks the block title.
 
 [source,cypher]
 ----
-MATCH (m:Movie) 
-WHERE m.released > 2000 
+MATCH (m:Movie)
+WHERE m.released > 2000
 RETURN m LIMIT 5
 ----
 
@@ -50,8 +50,8 @@ image::{img}/5-movies.svg[width="100%"]
 ====
 [source,cypher]
 ----
-MATCH (m:Movie) 
-WHERE m.released > 2005 
+MATCH (m:Movie)
+WHERE m.released > 2005
 RETURN m
 ----
 ====
@@ -64,8 +64,8 @@ RETURN m
 ====
 [source,cypher]
 ----
-MATCH (m:Movie) 
-WHERE m.released > 2005 
+MATCH (m:Movie)
+WHERE m.released > 2005
 RETURN count(m)
 ----
 ====
@@ -76,8 +76,8 @@ Nodes and Relationships are the basic building blocks of a graph database.
 
 *Nodes*
 
-Nodes represent entities. A node in graph database is similar to a row in a relational database. 
-In the picture below we can see 2 kinds of nodes - `Person` and `Movie`. In writing a Cypher query, a node is enclosed between a 
+Nodes represent entities. A node in graph database is similar to a row in a relational database.
+In the picture below we can see 2 kinds of nodes - `Person` and `Movie`. In writing a Cypher query, a node is enclosed between a
 
 parenthesis — like `(p:Person)` where `p` is a variable and `Person` is the type of node it is referring to.
 
@@ -85,18 +85,18 @@ image::{img}/schema.svg[width="100%"]
 
 *Relationship*
 
-Two nodes can be connected with a relationship. In the above image `ACTED_IN`, `REVIEWED`, `PRODUCED`, `WROTE` and `DIRECTED` are all 
+Two nodes can be connected with a relationship. In the above image `ACTED_IN`, `REVIEWED`, `PRODUCED`, `WROTE` and `DIRECTED` are all
 relationships connecting the corresponding types of nodes.
 
-In writing a cypher query, relationships are enclosed in square brackets - like `[w:WORKS_FOR]` where `w` is a variable and `WORKS_FOR` is 
+In writing a cypher query, relationships are enclosed in square brackets - like `[w:WORKS_FOR]` where `w` is a variable and `WORKS_FOR` is
 the type of relationship it is referring to.
 
 Two nodes can be connected with more than one relationships.
 
 [source, cypher]
 ----
-MATCH (p:Person)-[d:DIRECTED]-(m:Movie) 
-WHERE m.released > 2010 
+MATCH (p:Person)-[d:DIRECTED]-(m:Movie)
+WHERE m.released > 2010
 RETURN p,d,m
 ----
 
@@ -118,8 +118,8 @@ image::{img}/movies-after-2010.svg[width="100%"]
 ====
 [source,cypher]
 ----
-MATCH (p:Person)-[r:ACTED_IN]-(m:Movie) 
-WHERE m.released > 2010 
+MATCH (p:Person)-[r:ACTED_IN]-(m:Movie)
+WHERE m.released > 2010
 RETURN p,r,m
 ----
 ====
@@ -134,21 +134,21 @@ image::{img}/schema.svg[width="100%"]
 In writing a Cypher query, Labels are prefixed with a colon - like `:Person` or `:ACTED_IN`. You can assign the node label to a variable by prefixing the syntax with the variable name. Like `(p:Person)` means `p` variable denoted `Person` labeled nodes.
 
 
-Labels are used when you want to perform operations only on a specific types of Nodes. Like 
+Labels are used when you want to perform operations only on a specific types of Nodes. Like
 
 [source, cypher]
 ----
-MATCH (p:Person) 
-RETURN p 
+MATCH (p:Person)
+RETURN p
 LIMIT 20
 ----
 
-will return only `Person` Nodes (limiting to 20 items) while 
+will return only `Person` Nodes (limiting to 20 items) while
 
 [source, cypher]
 ----
-MATCH (n) 
-RETURN n 
+MATCH (n)
+RETURN n
 LIMIT 20
 ----
 
@@ -164,7 +164,7 @@ To return specific properties of a node you can write
 
 [source, cypher]
 ----
-MATCH (m:Movie) 
+MATCH (m:Movie)
 RETURN m.title, m.released
 ----
 
@@ -181,19 +181,19 @@ image::{img}/movies-properties.jpg[width="100%"]
 ====
 [source,cypher]
 ----
-MATCH (p:Person) 
+MATCH (p:Person)
 RETURN p.name, p.born
 ----
 ====
 
 == Create a Node
 
-`CREATE` clause can be used to create a new node or a relationship. 
+`CREATE` clause can be used to create a new node or a relationship.
 
 
 [source, cypher]
 ----
-CREATE (p:Person {name: 'John Doe'}) 
+CREATE (p:Person {name: 'John Doe'})
 RETURN p
 ----
 
@@ -207,20 +207,20 @@ The above statement will create a new `Person` node with property `name` having 
 ====
 [source,cypher]
 ----
-CREATE (p:Person {name: '<Your Name>'}) 
+CREATE (p:Person {name: '<Your Name>'})
 RETURN p
 ----
 ====
 
 == Finding Nodes with *Match* and *Where* Clause
 
-`Match` clause is used to find nodes that match a particular pattern. This is the primary way of getting data from a Neo4j database. 
+`Match` clause is used to find nodes that match a particular pattern. This is the primary way of getting data from a Neo4j database.
 
 In most cases, a `Match` is used along with certain conditions to narrow down the result.
 
 [source, cypher]
 ----
-MATCH (p:Person {name: 'Tom Hanks'}) 
+MATCH (p:Person {name: 'Tom Hanks'})
 RETURN p
 ----
 
@@ -231,8 +231,8 @@ Another way would be to use a `WHERE` clause which allows for more complex filte
 
 [source, cypher]
 ----
-MATCH (p:Person) 
-WHERE p.name = "Tom Hanks" 
+MATCH (p:Person)
+WHERE p.name = "Tom Hanks"
 RETURN p
 ----
 
@@ -248,7 +248,7 @@ You can read more about Where clause and list of all filters here - https://neo4
 ====
 [source,cypher]
 ----
-MATCH (m:Movie {title: "Cloud Atlas"}) 
+MATCH (m:Movie {title: "Cloud Atlas"})
 RETURN m
 ----
 ====
@@ -258,8 +258,8 @@ RETURN m
 ====
 [source,cypher]
 ----
-MATCH (m:Movie) 
-WHERE m.released > 2010 AND m.released < 2015 
+MATCH (m:Movie)
+WHERE m.released > 2010 AND m.released < 2015
 RETURN m
 ----
 ====
@@ -349,20 +349,20 @@ Example -
 
 [source, cypher]
 ----
-MATCH (p:Person)-[r:ACTED_IN]->(m:Movie) 
+MATCH (p:Person)-[r:ACTED_IN]->(m:Movie)
 RETURN p,r,m
 ----
 
 In the above query, Person has an outgoing relationship and movie has an incoming relationship.
 
 
-Although, in the case of the movies dataset, the direction of the relationship is not that important and 
+Although, in the case of the movies dataset, the direction of the relationship is not that important and
 even without denoting the direction in the query, it will return the same result. So the query
 
 
 [source, cypher]
 ----
-MATCH (p:Person)-[r:ACTED_IN]-(m:Movie) 
+MATCH (p:Person)-[r:ACTED_IN]-(m:Movie)
 RETURN p,r,m
 ----
 
@@ -376,7 +376,7 @@ will return the same reuslt as the above one.
 ====
 [source,cypher]
 ----
-MATCH (p:Person)-[r:REVIEWED]-(m:Movie) 
+MATCH (p:Person)-[r:REVIEWED]-(m:Movie)
 RETURN p,r,m
 ----
 ====
@@ -391,7 +391,7 @@ Let's look at some questions that you can answer with Cypher queries.
 +
 [source, cypher]
 ----
-MATCH (m:Movie {title: 'Cloud Atlas'})<-[d:DIRECTED]-(p:Person) 
+MATCH (m:Movie {title: 'Cloud Atlas'})<-[d:DIRECTED]-(p:Person)
 RETURN p.name
 ----
 
@@ -399,14 +399,14 @@ RETURN p.name
 +
 [source, cypher]
 ----
-MATCH (tom:Person {name: "Tom Hanks"})-[:ACTED_IN]->(:Movie)<-[:ACTED_IN]-(p:Person) 
+MATCH (tom:Person {name: "Tom Hanks"})-[:ACTED_IN]->(:Movie)<-[:ACTED_IN]-(p:Person)
 RETURN p.name
 ----
 3. *Finding all people related to the movie Cloud Atlas in any way*
 +
 [source, cypher]
 ----
-MATCH (p:Person)-[relatedTo]-(m:Movie {title: "Cloud Atlas"}) 
+MATCH (p:Person)-[relatedTo]-(m:Movie {title: "Cloud Atlas"})
 RETURN p.name, type(relatedTo)
 ----
 +
@@ -417,7 +417,7 @@ In the above query, we only used the variable `relatedTo` which will try to find
 +
 [source, cypher]
 ----
-MATCH (p:Person {name: 'Kevin Bacon'})-[*1..3]-(hollywood) 
+MATCH (p:Person {name: 'Kevin Bacon'})-[*1..3]-(hollywood)
 RETURN DISTINCT p, hollywood
 ----
 
