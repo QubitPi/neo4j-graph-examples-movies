@@ -15,10 +15,10 @@
 
 ==  What is Cypher?
 
-Cypher is a graph query language that is used to query the Neo4j Database. Just like you use SQL to query a MySQL database, 
+Cypher is a graph query language that is used to query the Neo4j Database. Just like you use SQL to query a MySQL database,
 you would use Cypher to query the Neo4j Database.
 
-A simple Cypher query can look something like this 
+A simple Cypher query can look something like this
 
 
 [source,cypher]
@@ -61,16 +61,16 @@ Nodes and relationships are the basic building blocks of a graph database.
 
 *Nodes*
 
-Nodes represent entities. 
-A node in graph database is similar to a row in a relational database. 
-In the picture below we can see 2 kinds of nodes - `Person` and `Movie`. 
+Nodes represent entities.
+A node in graph database is similar to a row in a relational database.
+In the picture below we can see 2 kinds of nodes - `Person` and `Movie`.
 When writing a Cypher query, a node is enclosed in parenthesis — like `(p:Person)` where `p` is a variable and `Person` is the type of node it is referring to.
 
 image::{img}/schema.svg[width="100%"]
 
 *Relationship*
 
-Two nodes can be connected with a relationship. 
+Two nodes can be connected with a relationship.
 In the above image `ACTED_IN`, `REVIEWED`, `PRODUCED`, `WROTE` and `DIRECTED` are all relationships connecting the corresponding types of nodes.
 
 When writing a Cypher query, relationships are enclosed in square brackets - like `[w:WORKS_FOR]` where `w` is a variable and `WORKS_FOR` is the type of relationship it is referring to.
@@ -102,23 +102,23 @@ MATCH (p:Person)-[d:ACTED_IN]-(m:Movie) WHERE m.released > 2010 RETURN p,d,m
 
 == Labels
 
-A label is a name or identifier of a node or a relationship. 
+A label is a name or identifier of a node or a relationship.
 In the image below `Movie` and `Person` are node labels and `ACTED_IN`, `REVIEWED`, etc are relationship types.
 
 image::{img}/schema.svg[width="100%"]
 
-When writing a Cypher query, labels are prefixed with a colon - like `:Person` or `:ACTED_IN`. 
+When writing a Cypher query, labels are prefixed with a colon - like `:Person` or `:ACTED_IN`.
 You can assign the node label to a variable by prefixing the syntax with the variable name, such as `(p:Person)` means `p` variable denoted `Person` labeled nodes.
 
 
-Labels are used when you want to perform operations only on a specific types of nodes, like: 
+Labels are used when you want to perform operations only on a specific types of nodes, like:
 
 [source, cypher]
 ----
 MATCH (p:Person) RETURN p LIMIT 20
 ----
 
-will return only `Person` nodes (limiting to 20 items) while 
+will return only `Person` nodes (limiting to 20 items) while
 
 [source, cypher]
 ----
@@ -155,7 +155,7 @@ MATCH (p:Person) RETURN p.name, p.born
 
 == Create a node
 
-A `CREATE` clause can be used to create a new node or a relationship. 
+A `CREATE` clause can be used to create a new node or a relationship.
 
 
 [source, cypher]
@@ -174,8 +174,8 @@ CREATE (p:Person {name: '<Your Name>'}) RETURN p
 
 == Finding nodes with MATCH and WHERE clauses
 
-A `MATCH` clause is used to find nodes that match a particular pattern. 
-This is the primary way of getting data from a Neo4j database. 
+A `MATCH` clause is used to find nodes that match a particular pattern.
+This is the primary way of getting data from a Neo4j database.
 
 In most cases, a `MATCH` is used along with certain conditions to narrow down the result.
 
@@ -231,16 +231,16 @@ ON MATCH SET p.lastLoggedInAt = timestamp()
 RETURN p
 ----
 
-The above statement will create the Person node if it does not exist. 
+The above statement will create the Person node if it does not exist.
 If the node already exists, then it will set the property `lastLoggedInAt` to the current timestamp.
 If the node does not exist and is created instead, then it will set the `createdAt` property to the current timestamp.
 
 
 *Try*
 
-. Write a query using `MERGE` to create a movie node with title "Greyhound". 
-If the node does not exist, then set its `released` property to 2020 and `lastUpdatedAt` property to the current time stamp. 
-If the node already exists, then only set `lastUpdatedAt` to the current time stamp. 
+. Write a query using `MERGE` to create a movie node with title "Greyhound".
+If the node does not exist, then set its `released` property to 2020 and `lastUpdatedAt` property to the current time stamp.
+If the node already exists, then only set `lastUpdatedAt` to the current time stamp.
 Return the movie node.
 +
 [source.try-cypher-result,cypher]
@@ -287,7 +287,7 @@ image::{img}/relationship-types.svg[width='400']
 
 In the above picture, the "Tom Hanks" node is said to have an outgoing relationship while the "Cloud Atlas" node is said to have an incoming relationship.
 
-Relationships always have a direction. 
+Relationships always have a direction.
 However, you only have to pay attention to the direction where it is useful.
 
 To denote an outgoing or an incoming relationship in cypher, we use `->` or `<-`.
@@ -356,14 +356,14 @@ MATCH (p:Person {name: 'Kevin Bacon'})-[*1..3]-(hollywood) RETURN DISTINCT p, ho
 [NOTE]
 ====
 In the above query, `hollywood` refers to any node in the database (in this case `Person` and `Movie` nodes).
-==== 
+====
 
 == Great Job!
 
-Now you know the basics of writing Cypher queries. 
+Now you know the basics of writing Cypher queries.
 Congratulations, you are on your way to becoming a graphista!
 
-Feel free to play around with the data by writing more Cypher queries. 
+Feel free to play around with the data by writing more Cypher queries.
 If you want to learn more about Cypher, you can use one of the below resources:
 
 1. link:https://neo4j.com/docs/cypher-manual/4.0/[Cypher Manual] - detailed manual on Cypher syntax
