@@ -67,7 +67,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
 
-      <img class="navbar-logo" src="_/img/Logo_White_RGB_TransBG.svg" alt="" />
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20231023102534/neo4j-logo.svg" alt="" />
       <a href="/developer/" class="navbar-item no-left-padding page-name-white" aria-label="Developer Guides">
         Developer
       </a>
@@ -109,7 +109,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
                 <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
                 <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
-                <li><a href="/docs/cdc/current/" class="project-link">Change Data Capture (CDC)</a></li>
               </ul>
             </div>
 
@@ -137,6 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="project-name">Neo4j Graph Data Science</span>
               <ul class="project-links">
                 <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
               </ul>
             </div>
 
@@ -150,7 +150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div class="navbar-item project">
-              <span class="project-name" href="/docs/drivers-apis">Create applications</span>
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
               <ul class="project-links">
                 <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
                 <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
@@ -158,99 +158,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
                 <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
                 <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
-                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
                 <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
                 <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
-                <li><a href="/docs/spark/" class="project-link">Neo4j Connector for Apache Spark</a></li>
-                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
               </ul>
             </div>
 
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable labs">
           <a class="navbar-link" href="/labs/">Labs</a>
           <div class="navbar-dropdown">
             <div class="navbar-item project">
-              <a class="project-name" href="/labs/arrows/">arrows.app</a>
-              <ul class="project-links">
-                <li><a href="/labs/arrows/" class="project-link">Details</a></li>
-                <li><a href="https://arrows.app" class="project-link">arrows.app</a></li>
-              </ul>
-            </div>
-            <div class="navbar-item project">
               <a class="project-name" href="/labs/apoc/">APOC Extended</a>
 
-              <ul class="project-links">
-                <li><a href="/labs/apoc/5/" class="project-link">Documentation</a></li>
-                <li><a href="/developer/neo4j-apoc/" class="project-link">Developer Guide</a></li>
-              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/arrows/">arrows.app</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/aura-cli/">Aura CLI</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/cypher-workbench/">Cypher Workbench</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/etl-tool/">ETL Tool</a>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="/labs/halin/">Halin</a>
             </div>
             <div class="navbar-item project">
-              <a class="project-name" href="/labs/etl-tool/">ETL Tool</a>
-              <ul class="project-links">
-                <li><a href="/labs/etl-tool/" class="project-link">Details</a></li>
-                <li><a href="/labs/etl-tool/1.5.0/" class="project-link">Documentation</a></li>
-              </ul>
+              <a class="project-name" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-helm/">Neo4j Helm</a>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="/labs/neo4j-migrations/">Neo4j Migrations</a>
-              <ul class="project-links">
-                <li><a href="/labs/neo4j-migrations/" class="project-link">Details</a></li>
-                <li><a href="/labs/neo4j-migrations/2.0/" class="project-link">Documentation</a></li>
-              </ul>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="/labs/liquibase/">Neo4j Plugin For Liquibase</a>
-              <ul class="project-links">
-                <li><a href="/labs/liquibase/" class="project-link">Details</a></li>
-                <li><a href="https://github.com/liquibase/liquibase-neo4j" class="project-link">Documentation</a></li>
-              </ul>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="/labs/neosemantics/">Neosemantics</a>
               <ul class="project-links">
-                <li><a href="/labs/neosemantics/tutorial/" class="project-link">Getting Started</a></li>
-                <li><a href="/labs/neosemantics/4.0/" class="project-link">Documentation</a></li>
-              </ul>
-            </div>
-            <div class="navbar-item project">
-              <a class="project-name" href="/labs/neo4j-helm/">Neo4j Helm</a>
-              <ul class="project-links">
-                <li><a href="/labs/neo4j-helm/" class="project-link">Details</a></li>
-                <li><a href="/labs/neo4j-helm/1.0.0/" class="project-link">Documentation</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j</a></li>
               </ul>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="/labs/neodash/">NeoDash</a>
-              <ul class="project-links">
-                <li><a href="/labs/neodash/" class="project-link">Details</a></li>
-                <li><a href="/labs/neodash/2.1/" class="project-link">Documentation</a></li>
-              </ul>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="/labs/neomodel/">neomodel</a>
-              <ul class="project-links">
-                <li><a href="/labs/neomodel/" class="project-link">Details</a></li>
-                <li><a href="https://neomodel.readthedocs.io/en/latest/" target="_blank" class="project-link">Documentation</a></li>
-              </ul>
             </div>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable developer">
           <a class="navbar-link" href="/developer/resources/">Get Help</a>
           <div class="navbar-dropdown">
-            <div class="navbar-item project">
-              <a class="project-name" href="https://graphacademy.neo4j.com/?ref=docs" target="_blank">GraphAcademy</a>
-              <ul class="project-links">
-                <li><a class="project-link" href="https://graphacademy.neo4j.com/?ref=docs">Free, Self Paced Training</a></li>
-                <li><a class="project-link" href="https://graphacademy.neo4j.com/certification/?ref=docs" target="_blank">Certification</a></li>
-              </ul>
-            </div>
-
             <div class="navbar-item project">
               <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
             </div>
@@ -265,6 +243,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="navbar-item project">
               <a class="project-name" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-community-detection/?ref=docs-nav">Community Detection</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -289,8 +305,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </nav>
+
 </header>
 <div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
 <div class="nav-container" data-component="neo4j-graph-examples-movie" data-version="1">
   <aside class="nav">
     <div class="panels">
@@ -345,15 +363,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="toolbar" role="navigation">
   <div class="toolbar-wrapper">
     <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
-    <nav class="breadcrumbs" aria-label="breadcrumbs">
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
 </nav>
-        <div class="edit-this-page"><a href="https://github.com/QubitPi/neo4j-graph-examples-movies/tree/master/modules/ROOT/pages/movies.adoc">Edit this Page</a></div>
+        <div class="edit-this-page"><a href="https://github.com/QubitPi/neo4j-graph-examples-movies/tree/HEAD/modules/ROOT/pages/movies.adoc">Edit this Page</a></div>
     </div>
 </div>
 
+  
   <div class="content">
+    <div id="skip-to-content"></div>
 <article class="doc">
 <div class="sect-header">
+  <h1 class="page"></h1>
 </div>
 
 
@@ -958,13 +979,14 @@ RETURN DISTINCT p, hollywood</code></pre>
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents"
+    <aside class="toc sidebar" data-title="Contents"
   data-levels="2">
   <div class="toc-menu">
     <div class="toc-menu-placeholder"></div>
 
       </div>
   </aside>  </div>
+  
 </main>
 </div>
 <footer class="footer">
